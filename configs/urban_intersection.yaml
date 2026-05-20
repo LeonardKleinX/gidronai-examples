@@ -1,0 +1,44 @@
+# Urban Intersection Scene Configuration
+# Generates a 4-way intersection with pedestrians, traffic, and street furniture.
+
+scene:
+  type: urban_intersection
+  size: [200, 200, 50]
+  weather: overcast
+  time_of_day: "14:30"
+
+physics:
+  gravity: -9.81
+  dt: 0.004167          # 1/240s
+  solver_iterations: 10
+  restitution: 0.3
+  static_friction: 0.5
+  dynamic_friction: 0.35
+
+agents:
+  count: 24
+  behavior: social_force
+  spawn_region: sidewalks
+  max_speed: 1.8
+  neighbor_radius: 5.0
+  goal_tolerance: 0.5
+  seed: 42
+
+simulation:
+  total_steps: 1000
+  warmup_steps: 50
+  target_fps: 60
+
+export:
+  format: coco
+  modalities:
+    - rgb
+    - depth
+    - segmentation
+  resolution: [1920, 1080]
+  frame_skip: 2
+  compress: true
+
+metadata:
+  experiment: urban_baseline_v1
+  author: leonard@gidronai.me
