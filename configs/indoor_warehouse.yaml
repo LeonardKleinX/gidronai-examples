@@ -1,0 +1,45 @@
+# Indoor Warehouse Scene Configuration
+# Large indoor space with autonomous forklift and worker agents.
+
+scene:
+  type: indoor_warehouse
+  size: [80, 60, 12]
+  weather: clear          # indoor, weather has no effect
+  time_of_day: "12:00"
+
+physics:
+  gravity: -9.81
+  dt: 0.004167
+  solver_iterations: 12
+  restitution: 0.15
+  static_friction: 0.7
+  dynamic_friction: 0.5
+  enable_soft_body: false
+
+agents:
+  count: 8
+  behavior: orca
+  spawn_region: full
+  max_speed: 3.0          # forklifts + walking workers
+  neighbor_radius: 10.0
+  goal_tolerance: 1.0
+  seed: 77
+
+simulation:
+  total_steps: 1500
+  warmup_steps: 30
+  target_fps: 30
+
+export:
+  format: nuscenes
+  modalities:
+    - rgb
+    - depth
+    - segmentation
+  resolution: [1600, 900]
+  frame_skip: 1
+  compress: true
+
+metadata:
+  experiment: warehouse_navigation_v1
+  author: leonard@gidronai.me
